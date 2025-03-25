@@ -102,18 +102,18 @@
             <form onsubmit="verifyUser(event)">
                 <div class="input-box">
                     <i class="fas fa-envelope"></i>
-                    <input id="email" type="text" placeholder="Email or Phone Here" required>
+                    <input id="email" type="text" name="emailOrPhone" placeholder="Email or Phone Here" required>
                 </div>
                 <div class="input-box">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <i class="fas fa-eye-slash"></i>
                 </div>
                 <div class="remember">
                     <input type="checkbox" id="remember">
                     <label for="remember">Remember me</label>
                 </div>
-                <button type="submit" class="btn" onClick="verifyUser()">Login Here</button>
+                <button type="submit" class="btn">Login Here</button>
             </form>
             <div class="links">
                 <a href="signup.jsp">New User?</a>
@@ -124,15 +124,53 @@
 </body>
 
 <script>
+	let user = localStorage.getItem("user");
+	
+	if (user) {
+	    // Redirect to login if no user data            if ()
+	    window.location.href = "home.jsp";
+	}
 
-function verifyUser(e)  {
-	e.preventDefault();
-	if(document.getElementById("email").value == "admin@gmail.com" && document.getElementById("password").value == "admin123") {
-		window.location.href = "adminDashboard.jsp";
+	function verifyUser(event) {
+	    event.preventDefault(); // Prevent form from submitting normally
+	
+	    let emailOrPhone = document.getElementById("email").value;
+	    let password = document.getElementById("password").value;
+	
+	    // Send login request to the servlet
+	    fetch("LoginServlet", {
+		    method: "POST",
+		    headers: {
+		        "Content-Type": "application/x-www-form-urlencoded"
+		    },
+		    body: "emailOrPhone=" + encodeURIComponent(emailOrPhone) + "&password=" + encodeURIComponent(password)
+		})
+	    .then(response => response.json()) // Parse JSON response
+	    .then(data => {
+	        console.log("Response Data:", data);
+	
+	        if (data.status === "success") {
+	            // Store user data in localStorage
+	            localStorage.setItem("user", JSON.stringify(data));
+	
+	            // Parse stored data to access properties
+	            let userData = JSON.parse(localStorage.getItem("user"));
+	
+	            if (userData.userType === "user") {
+	                window.location.href = "userDashboard.jsp";
+	            } else if (userData.userType === "admin") {
+	                window.location.href = "adminDashboard.jsp";
+	            } else {
+	                alert("Unknown user type.");
+	            }
+	
+	        } else {
+	            alert(data.message); // Show error message
+	        }
+	    })
+	    .catch(error => console.error("Error:", error));
 	}
-	else if(document.getElementById("email").value == "user@gmail.com" && document.getElementById("password").value == "user123") {
-		window.location.href = "userDashboard.jsp";
-	}
-}
+
 </script>
+
 </html>

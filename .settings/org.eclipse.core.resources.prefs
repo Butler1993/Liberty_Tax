@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/webapp/about.jsp=UTF-8
 encoding//src/main/webapp/admin-taxfile.jsp=UTF-8
 encoding//src/main/webapp/adminDashboard.jsp=UTF-8
+encoding//src/main/webapp/home.jsp=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8
 encoding//src/main/webapp/user-taxfile.jsp=UTF-8
 encoding//src/main/webapp/userDashboard.jsp=UTF-8

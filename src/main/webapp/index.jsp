@@ -31,23 +31,11 @@
           	<div id="tax-beneficiary">
           		<div class="elements">
           			<img src="./images/civilian.png" >
-          			<p>New Comer</p>
+          			<p>Employee Tax </p>
           		</div>
           		<div class="elements">
           			<img src="./images/small business.png">
-          			<p>Small Business</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/military.png">
-          			<p>Military</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/student.png">
-          			<p>Student</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/tax.png">
-          			<p>Tax Filling</p>
+          			<p> Business Tax</p>
           		</div>
           	</div>
           </li>
@@ -168,6 +156,12 @@
     </footer>
 </body>
 <script>
+	let user = localStorage.getItem("user");
+	
+	if (user) {
+	    // Redirect to login if no user data            if ()
+	    window.location.href = "home.jsp";
+	}
 	let loginElement = document.getElementById("login");
 	let taxBeneficiary = document.getElementById("tax-beneficiary");
 	let isTaxBeneficiaryOpen = false;

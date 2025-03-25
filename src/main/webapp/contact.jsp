@@ -34,29 +34,17 @@
           	<div id="tax-beneficiary">
           		<div class="elements">
           			<img src="./images/civilian.png" >
-          			<p>New Comer</p>
+          			<p>Employee Tax </p>
           		</div>
           		<div class="elements">
           			<img src="./images/small business.png">
-          			<p>Small Business</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/military.png">
-          			<p>Military</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/student.png">
-          			<p>Student</p>
-          		</div>
-          		<div class="elements">
-          			<img src="./images/tax.png">
-          			<p>Tax Filling</p>
+          			<p> Business Tax</p>
           		</div>
           	</div>
           </li>
           <li><a href="#">More</a></li>
           <li><a href="contact.jsp">Contact</a></li>
-          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp">Login</a></li>
+          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp" id="user-type">Login/Register</a><a id="login" href="login.jsp">Login</a></li>
         </ul>
       </nav>
 
@@ -127,6 +115,19 @@
 
 </body>
 <script>
+let user = localStorage.getItem("user");
+
+user = JSON.parse(user);
+if(user.userType == "user") {
+	document.getElementById("user-type").innerHTML = "New Commer";
+	document.getElementById("login").href = "userDashboard.jsp";
+	document.getElementById("login").innerHTML = "Dashboard";
+}
+else if (user.userType == "admin") {
+	document.getElementById("user-type").innerHTML = "Admin";
+	document.getElementById("login").href = "adminDashboard.jsp";
+	document.getElementById("login").innerHTML = "Dashboard";
+}
 let loginElement = document.getElementById("login");
 let taxBeneficiary = document.getElementById("tax-beneficiary");
 let isTaxBeneficiaryOpen = false;

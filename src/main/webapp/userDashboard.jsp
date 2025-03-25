@@ -13,11 +13,11 @@
     <div id="sidebar-container">
         <div class="sidebar">
             <img src="./images/tax_logo.jpg" alt="Liberty Tax">
-            <p class="admin-info">Welcome <b>Robert</b></p>
-            <a href="userDashboard.jsp"><img src="./images/dashb.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Dashboard</a>
-            <a href="live-site.jsp"><img src="./images/live sign.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Live Site</a>
-            <a href="user-taxfile.jsp"><img src="./images/user1.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> My TaxFiles</a>
-            <a href="logout.jsp"><img src="./images/logoutadmin2.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Logout</a>
+            <span style="display: flex; align-items: center; gap: 10px"><img id="sidebar-avatar" style="height: 50px; width: 50px; margin: 0"><p class="admin-info">Welcome <b id="user-fullName"></b></p></span>
+            <a class="sidebar-element" href="userDashboard.jsp"><img src="./images/dashb.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Dashboard</a>
+            <a class="sidebar-element" href="home.jsp"><img src="./images/live sign.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Live Site</a>
+            <a class="sidebar-element" href="user-taxfile.jsp"><img src="./images/user1.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> My TaxFiles</a>
+            <p class="sidebar-element" onClick="logout()"><img src="./images/logoutadmin2.jpg" alt="Liberty Tax" style="height: 30px; width: 30px;margin: 5px;"> Logout</p>
         </div>
         
     </div>
@@ -27,6 +27,7 @@
             <button class="user-btn">User: <span class="new-user">New Comer</span></button>
             <div class="profile-options">
                 <a href="userprofile.jsp" class="profile">Edit Profile</a>
+                <a href="viewProfile.jsp" class="profile">View Profile</a>
             </div>
         </header>
     
@@ -57,4 +58,34 @@
     })
     .catch(error => console.error("Error loading sidebar:", error));
 </script> -->
+<script>
+        // Check if user is logged in
+        let user = localStorage.getItem("user");
+
+        if (!user) {
+            // Redirect to login if no user data            if ()
+            window.location.href = "login.jsp";
+        } else {
+            // Parse user data
+            user = JSON.parse(user);
+
+            if (user.userType == "admin") {
+            	window.location.href = "login.jsp";
+            }
+            
+            document.getElementById("user-fullName").innerHTML = user.fullName;
+            document.getElementById("sidebar-avatar").src = decodeURIComponent(user.profileImage);
+            // Display user details
+            //document.getElementById("username").textContent = user.fullName;
+            //document.getElementById("user-email").textContent = user.email;
+            //document.getElementById("user-phone").textContent = user.phoneNumber;
+            //document.getElementById("user-tax").textContent = user.taxType;
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("user"); // Clear localStorage
+            window.location.href = "login.jsp"; // Redirect to login
+        }
+    </script>
 </html>

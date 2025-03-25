@@ -72,12 +72,12 @@ body {
 
 .main-nav .menu #tax-beneficiary {
 	position: absolute;
-	right: 0;
+	right: 100px;
 	background: white;
-	width: 100vw;
+	width: fit-content;
 	z-index: 99;
 	display: none;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto;
 	gap: 30px;
 	padding: 20px;
 }
@@ -420,4 +420,7 @@ p {
   align-items: start;
   gap: 50px;
   color: black;
+  background: white;
+  font-size: 20px;
+  padding: 50px;
 }
