@@ -44,10 +44,9 @@
           </li>
           <li><a href="#">More</a></li>
           <li><a href="contact.jsp">Contact</a></li>
-          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp" id="user-type">Login/Register</a><a id="login" href="login.jsp">Login</a></li>
+          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp">Login/Register</a><a id="login" href="login.jsp">Login</a></li>
     </ul>
   </nav>
-
     <!-- Hero Section -->
     <section class="hero-section" style="background: url('./images/bg-2.jpeg') no-repeat center; background-size: cover; height: 100px; padding: 50px;">
         <h1>About</h1>
@@ -161,41 +160,34 @@
 
 </body>
 <script>
-let user = localStorage.getItem("user");
-
-user = JSON.parse(user);
-if(user.userType == "user") {
-	document.getElementById("user-type").innerHTML = "New Commer";
-	document.getElementById("login").href = "userDashboard.jsp";
-	document.getElementById("login").innerHTML = "Dashboard";
-}
-else if (user.userType == "admin") {
-	document.getElementById("user-type").innerHTML = "Admin";
-	document.getElementById("login").href = "adminDashboard.jsp";
-	document.getElementById("login").innerHTML = "Dashboard";
-}
-let loginElement = document.getElementById("login");
-let taxBeneficiary = document.getElementById("tax-beneficiary");
-let isTaxBeneficiaryOpen = false;
-function showLogin() {
-	loginElement.style.display = "block";
-}
-
-function hideLogin() {
-	setTimeout(() => {
-		loginElement.style.display = "none";
-	}, 2000)
-}
-
-function toggleTaxBeneficiary() {
-	isTaxBeneficiaryOpen = !isTaxBeneficiaryOpen;
-	if(isTaxBeneficiaryOpen) {
-		taxBeneficiary.style.display = "grid"; 
+	let user = localStorage.getItem("user");
+	
+	if (user) {
+	    // Redirect to login if no user data            
+	    window.location.href = "home.jsp";
 	}
-	else {
-		taxBeneficiary.style.display = "none"; 
+	let loginElement = document.getElementById("login");
+	let taxBeneficiary = document.getElementById("tax-beneficiary");
+	let isTaxBeneficiaryOpen = false;
+	function showLogin() {
+		loginElement.style.display = "block";
 	}
-}
+	
+	function hideLogin() {
+		setTimeout(() => {
+			loginElement.style.display = "none";
+		}, 2000)
+	}
+	
+	function toggleTaxBeneficiary() {
+		isTaxBeneficiaryOpen = !isTaxBeneficiaryOpen;
+		if(isTaxBeneficiaryOpen) {
+			taxBeneficiary.style.display = "grid"; 
+		}
+		else {
+			taxBeneficiary.style.display = "none"; 
+		}
+	}
 	
 </script>
 </html>

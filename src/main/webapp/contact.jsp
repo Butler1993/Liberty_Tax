@@ -22,12 +22,12 @@
           <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
       </header>
-      <nav class="main-nav" style="background-color: #FFFFFF" >
-        <div class="logo">
-          <img src="./images/tax_logo.jpg" height="70px">
-        </div>
-        <ul class="menu">
-          <li><a href="index.jsp">Home</a></li>
+     <nav class="main-nav" style="background-color: #FFFFFF">
+    <div class="logo">
+      <img src="./images/tax_logo.jpg" height="70px">
+    </div>
+    <ul class="menu">
+      <li><a href="index.jsp">Home</a></li>
           <li><a href="about.jsp">About</a></li>
           <li onClick="toggleTaxBeneficiary()">
           	<a href="#">Tax Beneficiary</a>
@@ -44,10 +44,9 @@
           </li>
           <li><a href="#">More</a></li>
           <li><a href="contact.jsp">Contact</a></li>
-          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp" id="user-type">Login/Register</a><a id="login" href="login.jsp">Login</a></li>
-        </ul>
-      </nav>
-
+          <li onmouseover="showLogin()" onmouseout="hideLogin()"><a href="login.jsp">Login/Register</a><a id="login" href="login.jsp">Login</a></li>
+    </ul>
+  </nav>
     <!-- Hero Section -->
     <section class="hero-section" style="background: url('./images/bg-2.jpeg') no-repeat center; background-size: cover; height: 100px; padding: 50px;">
         <h1>Contact Us Here!</h1>
@@ -71,13 +70,13 @@
         <div class="form-content">
             <h2>Contact Us</h2>
             <p>Please do not hesitate to send us a message, We are looking forward to hearing from you! We reply within 24 hours.</p>
-            <form action="#" method="post">
-                <input type="text" id="firstName" placeholder="Enter First Name Here.." required>
-                <input type="text" id="lastName" placeholder="Enter Last Name Here..." required>
-                <input type="email" id="email" placeholder="Enter Email Here..." required>
-                <input type="tel" id="phone" placeholder="Enter Phone Here..." required>
-                <input type="text" id="subject" placeholder="Enter Subject Here..." required>
-                <textarea id="message" placeholder="Write Message Here...." required></textarea>
+            <form action="ContactServlet" method="post">
+                <input type="text" id="firstName" name="firstname" placeholder="Enter First Name Here.." required>
+                <input type="text" id="lastName" name="lastname" placeholder="Enter Last Name Here..." required>
+                <input type="email" id="email" name="email" placeholder="Enter Email Here..." required>
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Here..." required>
+                <input type="text" id="subject" name="subject" placeholder="Enter Subject Here..." required>
+                <textarea id="message" name="message" placeholder="Write Message Here...." required></textarea>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -115,40 +114,34 @@
 
 </body>
 <script>
-let user = localStorage.getItem("user");
-
-user = JSON.parse(user);
-if(user.userType == "user") {
-	document.getElementById("user-type").innerHTML = "New Commer";
-	document.getElementById("login").href = "userDashboard.jsp";
-	document.getElementById("login").innerHTML = "Dashboard";
-}
-else if (user.userType == "admin") {
-	document.getElementById("user-type").innerHTML = "Admin";
-	document.getElementById("login").href = "adminDashboard.jsp";
-	document.getElementById("login").innerHTML = "Dashboard";
-}
-let loginElement = document.getElementById("login");
-let taxBeneficiary = document.getElementById("tax-beneficiary");
-let isTaxBeneficiaryOpen = false;
-function showLogin() {
-	loginElement.style.display = "block";
-}
-
-function hideLogin() {
-	setTimeout(() => {
-		loginElement.style.display = "none";
-	}, 2000)
-}
-
-function toggleTaxBeneficiary() {
-	isTaxBeneficiaryOpen = !isTaxBeneficiaryOpen;
-	if(isTaxBeneficiaryOpen) {
-		taxBeneficiary.style.display = "grid"; 
+	let user = localStorage.getItem("user");
+	
+	if (user) {
+	    // Redirect to login if no user data            if ()
+	    window.location.href = "home.jsp";
 	}
-	else {
-		taxBeneficiary.style.display = "none"; 
+	let loginElement = document.getElementById("login");
+	let taxBeneficiary = document.getElementById("tax-beneficiary");
+	let isTaxBeneficiaryOpen = false;
+	function showLogin() {
+		loginElement.style.display = "block";
 	}
-}
+	
+	function hideLogin() {
+		setTimeout(() => {
+			loginElement.style.display = "none";
+		}, 2000)
+	}
+	
+	function toggleTaxBeneficiary() {
+		isTaxBeneficiaryOpen = !isTaxBeneficiaryOpen;
+		if(isTaxBeneficiaryOpen) {
+			taxBeneficiary.style.display = "grid"; 
+		}
+		else {
+			taxBeneficiary.style.display = "none"; 
+		}
+	}
+	
 </script>
 </html>

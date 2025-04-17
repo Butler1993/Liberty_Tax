@@ -115,13 +115,13 @@
         <div class="form-content">
             <h2>Contact Us</h2>
             <p>Please do not hesitate to send us a message, We are looking forward to hearing from you! We reply within 24 hours.</p>
-            <form action="#" method="post">
-                <input type="text" id="firstName" placeholder="Enter First Name Here.." required>
-                <input type="text" id="lastName" placeholder="Enter Last Name Here..." required>
-                <input type="email" id="email" placeholder="Enter Email Here..." required>
-                <input type="tel" id="phone" placeholder="Enter Phone Here..." required>
-                <input type="text" id="subject" placeholder="Enter Subject Here..." required>
-                <textarea id="message" placeholder="Write Message Here...." required></textarea>
+            <form action="ContactServlet" method="post">
+                <input type="text" id="firstName" name="firstname" placeholder="Enter First Name Here.." required>
+                <input type="text" id="lastName" name="lastname" placeholder="Enter Last Name Here..." required>
+                <input type="email" id="email" name="email" placeholder="Enter Email Here..." required>
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Here..." required>
+                <input type="text" id="subject" name="subject" placeholder="Enter Subject Here..." required>
+                <textarea id="message" name="message" placeholder="Write Message Here...." required></textarea>
                 <button type="submit">Submit</button>
             </form>
         </div>
